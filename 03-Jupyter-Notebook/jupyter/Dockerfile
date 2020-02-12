@@ -26,8 +26,8 @@ RUN apt-get update --fix-missing \
 # you would like to have in the notebook environment
 RUN python3 -m pip install \
         matplotlib \
-        sklearn \
-        scipy \
+        scikit-learn==0.22.1 \
+        scipy==1.4.1 \
         pandas
         
 COPY files/entrypoint.sh /bin/entrypoint.sh
