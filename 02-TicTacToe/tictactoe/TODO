@@ -1,0 +1,4 @@
+- git clone into image
+- patch localhost to dynamodb
+- alpine version? // elaborate on sizes
+- python-app to show dynamodb stats?
