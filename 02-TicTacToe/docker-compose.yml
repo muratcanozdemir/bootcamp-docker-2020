@@ -1,0 +1,40 @@
+version: "3.4"
+services:
+  tictactoe:
+    build:
+      context: tictactoe
+    command:
+      - 'python'
+      - 'application.py'
+      - '--mode'
+      - 'local'
+      - '--serverPort'
+      - '5000'
+      - '--port'
+      - '8000'
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_ENV=development
+  dynamodb:
+    image: amazon/dynamodb-local:1.12.0
+    ports:
+      - 8000:8000
+    command:
+     - '-jar'
+     - 'DynamoDBLocal.jar'
+     - '-sharedDb'
+     - '-inMemory'
+  dbreader:
+    build:
+      context: dbreader
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_PORT=8888
+      - TABLE_NAME=Games
+      - FLASK_ENV=development
+    command:
+      - 'python'
+      - 'app.py'
+    ports:
+      - 8888:8888
